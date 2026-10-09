@@ -146,7 +146,7 @@
         <p>&copy; D.El.Ed Student Resource Portal</p>
     </footer>
 
-    <script>
+<script>
         // Extract medium and year from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const medium = urlParams.get('medium') || 'odisha';
@@ -156,4 +156,69 @@
         document.getElementById('page-title').textContent = `${medium.toUpperCase()} - ${year}${year === '1' ? 'st' : 'nd'} Year Textbooks`;
 
         // Fetch JSON matching medium name (e.g. odisha.json)
-      
+        fetch(`${medium}.json`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Could not find ${medium}.json file.`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const yearKey = year === '1' ? 'year1' : 'year2';
+                const books = data[yearKey];
+
+                if (!books || books.length === 0) {
+                    document.getElementById('content-area').innerHTML = `
+                        <div class="status-msg">No textbooks available for this year yet.</div>
+                    `;
+                    return;
+                }
+
+                // Build HTML Table dynamically
+                let tableHTML = `
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%;">Sl. No</th>
+                                    <th style="width: 65%;">Textbook Title</th>
+                                    <th style="width: 25%; text-align: center;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                `;
+
+                books.forEach((book, index) => {
+                    tableHTML += `
+                        <tr>
+                            <td>${index + 1}</td>
+                            <td><strong>${book.name}</strong></td>
+                            <td style="text-align: center;">
+                                <a href="${book.driveLink}" target="_blank" rel="noopener noreferrer" class="btn-view">
+                                    📄 View Drive
+                                </a>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                tableHTML += `
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+
+                document.getElementById('content-area').innerHTML = tableHTML;
+            })
+            .catch(error => {
+                document.getElementById('content-area').innerHTML = `
+                    <div class="status-msg" style="color: #dc2626;">
+                        ${error.message}<br><br>
+                        Make sure <strong>${medium}.json</strong> exists in the same folder as this page.
+                    </div>
+                `;
+            });
+</script>
+
+    </body>
+</html>
