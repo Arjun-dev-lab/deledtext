@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D.El.Ed Textbooks</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --card-bg: #ffffff;
+            --accent: #2563eb;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        main {
+            flex: 1;
+            max-width: 900px;
+            width: 90%;
+            margin: 2.5rem auto;
+        }
+
+        .status-msg {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.1rem;
+            color: #64748b;
+        }
+
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        thead {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        th, td {
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        th {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .btn-view {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-view:hover {
+            background-color: #1d4ed8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #e2e8f0;
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
+        @media (max-width: 600px) {
+            th, td {
+                padding: 0.75rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            .btn-view {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 id="page-title">D.El.Ed Textbooks</h1>
+    </header>
+
+    <main>
+        <div id="content-area">
+            <div class="status-msg">Loading textbooks...</div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; D.El.Ed Student Resource Portal</p>
+    </footer>
+
+    <script>
+        // Extract medium and year from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const medium = urlParams.get('medium') || 'odisha';
+        const year = urlParams.get('year') || '1';
+
+        // Set up dynamic titles & back link
+        document.getElementById('page-title').textContent = `${medium.toUpperCase()} - ${year}${year === '1' ? 'st' : 'nd'} Year Textbooks`;
+
+        // Fetch JSON matching medium name (e.g. odisha.json)
+      
