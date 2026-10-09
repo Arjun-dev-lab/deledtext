@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odisha D.El.Ed Textbooks Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            600: '#1d4ed8',
+                            700: '#1d4ed8',
+                            800: '#1e40af',
+                            900: '#1a365d', // Deep blue required theme
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
+
+    <!-- Top Portal Header -->
+    <header class="bg-brand-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('mediumPage')">
+                <div class="bg-white/10 p-2 rounded-lg backdrop-blur-sm">
+                    <i class="fa-solid font-bold fa-book-bookmark text-amber-400 text-2xl sm:text-3xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg sm:text-xl font-bold tracking-tight">Odisha D.El.Ed Textbooks Portal</h1>
+                    <p class="text-xs text-slate-300 font-medium">SCERT Teacher Education Repository</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center space-x-2 text-xs sm:text-sm">
+                <span id="breadcrumb" class="bg-white/10 px-3 py-1.5 rounded-full text-slate-200 flex items-center gap-2">
+                    <i class="fa-solid fa-earth-asia text-amber-400"></i>
+                    <span id="breadcrumb-text">Select Language</span>
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10">
+
+        <!-- Back Button Bar (Hidden on home page) -->
+        <div id="backContainer" class="mb-6 hidden">
+            <button onclick="goBack()" class="inline-flex items-center text-sm font-semibold text-brand-900 hover:text-brand-600 bg-white border border-slate-200 px-4 py-2 rounded-lg shadow-sm hover:shadow transition-all">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back
+            </button>
+        </div>
+
+        <section id="mediumPage" class="fade-in">
+            <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+                <span class="bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Step 1 of 3</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Select Medium / Language</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">Choose your preferred medium of instruction for Diploma in Elementary Education textbooks.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <!-- Odia Medium Card -->
+                <div onclick="selectMedium('Odia Medium / Odisha D.El.Ed')" class="group bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:border-brand-600 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-amber-50 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <span class="text-amber-600 font-bold text-2xl">ଓଡ଼ି</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-900 transition-colors">Odia Medium</h3>
+                        <p class="text-xs text-slate-500 mt-1">Odisha D.El.Ed Standard Curriculum (ଓଡ଼ିଆ ମାଧ୍ୟମ)</p>
+                    </div>
+                    <div class="mt-6 flex items-center text-xs font-bold text-brand-600 group-hover:text-brand-800">
+                        Select Stream <i class="fa-solid fa-chevron-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- English Medium Card -->
+                <div onclick="selectMedium('English Medium')" class="group bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:border-brand-600 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <span class="text-brand-600 font-bold text-2xl">EN</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-900 transition-colors">English Medium</h3>
+                        <p class="text-xs text-slate-500 mt-1">D.El.Ed Textbooks & Resource Materials in English</p>
+                    </div>
+                    <div class="mt-6 flex items-center text-xs font-bold text-brand-600 group-hover:text-brand-800">
+                        Select Stream <i class="fa-solid fa-chevron-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Hindi Medium Card -->
+                <div onclick="selectMedium('Hindi Medium')" class="group bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:border-brand-600 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-orange-50 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <span class="text-orange-600 font-bold text-2xl">हिं</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-900 transition-colors">Hindi Medium</h3>
+                        <p class="text-xs text-slate-500 mt-1">D.El.Ed Pedagogy & Teacher Handbooks in Hindi</p>
+                    </div>
+                    <div class="mt-6 flex items-center text-xs font-bold text-brand-600 group-hover:text-brand-800">
+                        Select Stream <i class="fa-solid fa-chevron-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+
+                <!-- Sanskrit Medium Card -->
+                <div onclick="selectMedium('Sanskrit Medium')" class="group bg-white rounded-2xl p-6 shadow-sm border border-slate-200 hover:border-brand-600 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-emerald-50 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                            <span class="text-emerald-600 font-bold text-2xl">सं</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 group-hover:text-brand-900 transition-colors">Sanskrit Medium</h3>
+                        <p class="text-xs text-slate-500 mt-1">Sanskrit Teacher Education Study Content</p>
+                    </div>
+                    <div class="mt-6 flex items-center text-xs font-bold text-brand-600 group-hover:text-brand-800">
+                        Select Stream <i class="fa-solid fa-chevron-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="yearPage" class="hidden fade-in">
+            <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+                <span class="bg-brand-100 text-brand-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Step 2 of 3</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Select Academic Year</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">Choose academic year for <span id="selectedMediumLabel" class="font-bold text-brand-900"></span></p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                <!-- 1st Year Card -->
+                <div onclick="selectYear('1st Year')" class="group bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-brand-900 hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-brand-50 text-brand-900 rounded-full flex items-center justify-center text-3xl font-bold mb-5 group-hover:bg-brand-900 group-hover:text-white transition-colors">
+                        1
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 group-hover:text-brand-900">D.El.Ed 1st Year Books</h3>
+                    <p class="text-slate-500 text-sm mt-2 max-w-xs">Foundation courses including FC-2, FC-4, FC-5 and Core Pedagogy subjects.</p>
+                    <span class="mt-6 inline-flex items-center px-5 py-2.5 rounded-xl bg-brand-900 text-white text-sm font-semibold group-hover:bg-brand-700 transition-colors">
+                        View Textbooks <i class="fa-solid fa-book-open ml-2"></i>
+                    </span>
+                </div>
+
+                <!-- 2nd Year Card -->
+                <div onclick="selectYear('2nd Year')" class="group bg-white rounded-2xl p-8 border-2 border-slate-200 hover:border-brand-900 hover:shadow-2xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-indigo-50 text-indigo-900 rounded-full flex items-center justify-center text-3xl font-bold mb-5 group-hover:bg-brand-900 group-hover:text-white transition-colors">
+                        2
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 group-hover:text-brand-900">D.El.Ed 2nd Year Books</h3>
+                    <p class="text-slate-500 text-sm mt-2 max-w-xs">Advanced curriculum including FC-1, FC-3, English, Math and Social Science Pedagogy.</p>
+                    <span class="mt-6 inline-flex items-center px-5 py-2.5 rounded-xl bg-brand-900 text-white text-sm font-semibold group-hover:bg-brand-700 transition-colors">
+                        View Textbooks <i class="fa-solid fa-book-open ml-2"></i>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section id="booksPage" class="hidden fade-in">
+            <!-- Dynamic Header & Navigation Tabs -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-6 mb-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-slate-100">
+                    <div>
+                        <span id="currentMediumTag" class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-700 rounded-md">Medium</span>
+                        <h2 id="yearHeading" class="text-2xl font-extrabold text-brand-900 mt-1">D.El.Ed Books</h2>
+                    </div>
+
+                    <!-- Year Toggle Tabs inside book view -->
+                    <div class="inline-flex p-1 bg-slate-100 rounded-xl">
+                        <button id="tab1stYear" onclick="switchYearTab('1st Year')" class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all">
+                            1st Year Books
+                        </button>
+                        <button id="tab2ndYear" onclick="switchYearTab('2nd Year')" class="px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all">
+                            2nd Year Books
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search Input Bar -->
+                <div class="mt-4 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="searchInput" onkeyup="filterBooks()" placeholder="Search textbook title or subject code (e.g. FC-2, Pedagogy, Odia)..." class="w-full pl-11 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:bg-white transition-all">
+                </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-brand-900 text-white text-xs sm:text-sm uppercase font-semibold">
+                                <th class="py-4 px-6 w-20 text-center">Sl. No</th>
+                                <th class="py-4 px-6">Title</th>
+                                <th class="py-4 px-6 w-40 text-center">Download</th>
+                            </tr>
+                        </thead>
+                        <tbody id="booksTableBody" class="divide-y divide-slate-100 text-sm">
+                            <!-- Rows injected dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State Search Result -->
+                <div id="noResults" class="hidden p-8 text-center text-slate-500">
+                    <i class="fa-solid fa-folder-open text-3xl mb-2 text-slate-300"></i>
+                    <p class="font-medium">No matching textbooks found.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-auto py-6 text-center text-xs text-slate-500">
+        <div class="max-w-6xl mx-auto px-4">
+            <p>© 2026 Odisha D.El.Ed Textbooks Portal. Official SCERT Curriculum Reference.</p>
+            <p class="mt-1 text-slate-400">Designed for D.El.Ed Trainees & Educator Resources across Odisha.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Data structure for 1st Year and 2nd Year Textbooks
+        // Links are placeholder Google Drive links ready to be replaced with custom drive URLs
+        const booksData = {
+            "1st Year": [
+                { sl: 1, code: "FC-2", name: "FC-2 (Understanding the Learner)", driveUrl: "https://drive.google.com/file/d/example_fc2_link/view" },
+                { sl: 2, code: "FC-4", name: "FC-4 (Pedagogy Process)", driveUrl: "https://drive.google.com/file/d/example_fc4_link/view" },
+                { sl: 3, code: "FC-5", name: "FC-5 (Holistic Development)", driveUrl: "https://drive.google.com/file/d/example_fc5_link/view" },
+                { sl: 4, code: "PC-1", name: "PC-1 (Odia) Content Based Pedagogy", driveUrl: "https://drive.google.com/file/d/example_pc1_link/view" },
+                { sl: 5, code: "PC-4", name: "PC-4 (Science) Content Based Pedagogy", driveUrl: "https://drive.google.com/file/d/example_pc4_link/view" },
+                { sl: 6, code: "PC-6 (a)", name: "PC-6 (a) (Hindi Content Based Pedagogy)", driveUrl: "https://drive.google.com/file/d/example_pc6a_link/view" }
+            ],
+            "2nd Year": [
+                { sl: 1, code: "FC-1", name: "FC-1 (Contemporary Issues)", driveUrl: "https://drive.google.com/file/d/example_fc1_link/view" },
+                { sl: 2, code: "FC-3", name: "FC-3 (Curriculum Planning)", driveUrl: "https://drive.google.com/file/d/example_fc3_link/view" },
+                { sl: 3, code: "PC-2", name: "PC-2 (English) Content Based Pedagogy", driveUrl: "https://drive.google.com/file/d/example_pc2_link/view" },
+                { sl: 4, code: "PC-3", name: "PC-3 (Mathematics) Content Based Pedagogy", driveUrl: "https://drive.google.com/file/d/example_pc3_link/view" },
+                { sl: 5, code: "PC-5", name: "PC-5 (Social Sc.) Content Based Pedagogy", driveUrl: "https://drive.google.com/file/d/example_pc5_link/view" },
+                { sl: 6, code: "PC-6 (b)", name: "PC-6 (b) Sanskrit Content Based Pedagogy", driveUrl: "https://drive.google.com/file/d/example_pc6b_link/view" }
+            ]
+        };
+
+        // Application State
+        let state = {
+            currentMedium: '',
+            currentYear: '',
+            history: []
+        };
+
+        // DOM Elements
+        const pageMedium = document.getElementById('mediumPage');
+        const pageYear = document.getElementById('yearPage');
+        const pageBooks = document.getElementById('booksPage');
+        const backContainer = document.getElementById('backContainer');
+        const breadcrumbText = document.getElementById('breadcrumb-text');
+        const selectedMediumLabel = document.getElementById('selectedMediumLabel');
+
+        // Navigation Functions
+        function selectMedium(medium) {
+            state.currentMedium = medium;
+            state.history.push('mediumPage');
+            
+            selectedMediumLabel.textContent = medium;
+            breadcrumbText.textContent = medium;
+
+            showPage(pageYear);
+            backContainer.classList.remove('hidden');
+        }
+
+        function selectYear(year) {
+            state.currentYear = year;
+            state.history.push('yearPage');
+            
+            breadcrumbText.textContent = `${state.currentMedium} > ${year}`;
+            renderBooksTable();
+            showPage(pageBooks);
+        }
+
+        function switchYearTab(year) {
+            state.currentYear = year;
+            breadcrumbText.textContent = `${state.currentMedium} > ${year}`;
+            renderBooksTable();
+        }
+
+        function showPage(pageElement) {
+            pageMedium.classList.add('hidden');
+            pageYear.classList.add('hidden');
+            pageBooks.classList.add('hidden');
+
+            pageElement.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function goBack() {
+            if (state.history.length === 0) return;
+            
+            const lastPage = state.history.pop();
+            if (lastPage === 'yearPage') {
+                showPage(pageYear);
+                breadcrumbText.textContent = state.currentMedium;
+            } else if (lastPage === 'mediumPage') {
+                showPage(pageMedium);
+                breadcrumbText.textContent = 'Select Language';
+                backContainer.classList.add('hidden');
+                state.currentMedium = '';
+                state.currentYear = '';
+            }
+        }
+
+        function navigateToHome() {
+            state.currentMedium = '';
+            state.currentYear = '';
+            state.history = [];
+            breadcrumbText.textContent = 'Select Language';
+            backContainer.classList.add('hidden');
+            showPage(pageMedium);
+        }
+
+        function renderBooksTable() {
+            const year = state.currentYear;
+            const heading = document.getElementById('yearHeading');
+            const mediumTag = document.getElementById('currentMediumTag');
+            const tableBody = document.getElementById('booksTableBody');
+            const tab1st = document.getElementById('tab1stYear');
+            const tab2nd = document.getElementById('tab2ndYear');
+
+            // Reset search input
+            document.getElementById('searchInput').value = '';
+            document.getElementById('noResults').classList.add('hidden');
+
+            // Update Header & Tabs State
+            heading.textContent = `D.El.Ed ${year} Books`;
+            mediumTag.textContent = state.currentMedium || 'Odia Medium';
+
+            if (year === '1st Year') {
+                tab1st.className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-brand-900 text-white shadow";
+                tab2nd.className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:text-slate-900";
+            } else {
+                tab2nd.className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg bg-brand-900 text-white shadow";
+                tab1st.className = "px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg text-slate-600 hover:text-slate-900";
+            }
+
+            // Populate Table
+            const currentList = booksData[year] || [];
+            tableBody.innerHTML = '';
+
+            currentList.forEach((book) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-colors border-b border-slate-100 last:border-none";
+                tr.innerHTML = `
+                    <td class="py-4 px-6 text-center font-semibold text-slate-500">${book.sl}</td>
+                    <td class="py-4 px-6 font-medium text-slate-900">
+                        <div class="flex items-center gap-2">
+                            <span>${book.name}</span>
+                        </div>
+                    </td>
+                    <td class="py-4 px-6 text-center">
+                        <a href="${book.driveUrl}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 bg-red-50 text-red-700 hover:bg-red-600 hover:text-white border border-red-200 rounded-lg text-xs font-bold transition-all shadow-sm">
+                            <i class="fa-solid fa-file-pdf text-sm"></i>
+                            <span>PDF</span>
+                        </a>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // Live Search Filter Function
+        function filterBooks() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('#booksTableBody tr');
+            let visibleCount = 0;
+
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                if (text.includes(input)) {
+                    row.style.display = "";
+                    visibleCount++;
+                } else {
+                    row.style.display = "none";
+                }
+            });
+
+            const noResults = document.getElementById('noResults');
+            if (visibleCount === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
