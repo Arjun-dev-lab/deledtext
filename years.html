@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Year - D.El.Ed Textbooks</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        main {
+            flex: 1;
+            max-width: 800px;
+            width: 90%;
+            margin: 3rem auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary);
+            font-size: 1.5rem;
+            text-transform: capitalize;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: var(--text);
+            border: 2px solid transparent;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-color: var(--secondary);
+        }
+
+        .card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            background: #e2e8f0;
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Select Academic Year</h1>
+    </header>
+
+    <main>
+        <h2 class="section-title" id="medium-title">Medium Selected</h2>
+        <div class="grid">
+            <a id="year1-link" href="#" class="card">
+                <div class="icon">1️⃣</div>
+                <h3>D.El.Ed 1st Year</h3>
+                <p>Click to view 1st Year Textbooks</p>
+            </a>
+            
+            <a id="year2-link" href="#" class="card">
+                <div class="icon">2️⃣</div>
+                <h3>D.El.Ed 2nd Year</h3>
+                <p>Click to view 2nd Year Textbooks</p>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; D.El.Ed Student Resource Portal</p>
+    </footer>
+
+    <script>
+        // Extract the selected medium parameter from the URL query string
+        const urlParams = new URLSearchParams(window.location.search);
+        const medium = urlParams.get('medium') || 'odisha';
+
+        // Update section heading
+        document.getElementById('medium-title').textContent = `${medium.toUpperCase()} MEDIUM - SELECT YEAR`;
+
+        // Update links dynamically to pass both medium and year to textbooks.html
+        document.getElementById('year1-link').href = `textbooks.html?medium=${medium}&year=1`;
+        document.getElementById('year2-link').href = `textbooks.html?medium=${medium}&year=2`;
+    </script>
+
+</body>
+</html>
